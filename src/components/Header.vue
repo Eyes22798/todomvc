@@ -1,6 +1,13 @@
 <template>
   <div class="header">
-    <input autofocus="autofocus" autocomplete="off" placeholder="What needs to be done?" class="new-todo">
+    <input
+      v-model="data"
+      autofocus="autofocus"
+      autocomplete="off"
+      placeholder="What needs to be done?"
+      class="new-todo"
+      @change="handleChange"
+    >
   </div>
 </template>
 
@@ -9,6 +16,25 @@ export default {
   name: 'Header',
   props: {
     msg: String
+  },
+  data () {
+    return {
+      data: '',
+      listData: JSON.parse(localStorage.getItem('list')) || []
+    }
+  },
+  methods: {
+    handleChange() {
+      if (this.data) {
+        this.listData.push(this.data)
+        this.$store.dispatch('setTextValue', {
+          text: this.data,
+          index: this.listData.indexOf(this.data)
+        })
+        this.listData.length > 0 && localStorage.setItem('list', JSON.stringify(this.listData))
+      }
+      this.data = ''
+    }
   }
 }
 </script>
