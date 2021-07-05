@@ -18,7 +18,7 @@ export default {
     display: block;
   }
 
-  .new-todo {
+  .header .new-todo {
     padding: 16px 16px 16px 60px;
     border: none;
     background: rgba(0, 0, 0, 0.003);
@@ -41,6 +41,12 @@ export default {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  .header input.new-todo:focus {
+    outline: none;
+    background-color: transparent;
+    border: 0px solid;
   }
   
 </style>
